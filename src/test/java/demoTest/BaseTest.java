@@ -1,5 +1,7 @@
 package demoTest;
 
+import dev.kwolszczak.pages.BasePage;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
@@ -21,7 +23,13 @@ public class BaseTest {
     }
 
     @AfterEach
+
     public void tearDown() {
         driver.quit();
+    }
+
+    @SneakyThrows
+    protected <T extends BasePage> T at(Class<T> clazz) {
+        return clazz.getDeclaredConstructor(WebDriver.class).newInstance(driver);
     }
 }

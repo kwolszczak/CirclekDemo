@@ -1,6 +1,5 @@
 package demoTest;
 
-import dev.kwolszczak.pages.HomePage;
 import dev.kwolszczak.pages.LoginPage;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
@@ -12,7 +11,7 @@ class LoginTest extends BaseTest {
 
     @Test
     @DisplayName("Login successful")
-    public void verifyLoginWithCorrectUsernameAndPassword()  {
+    public void verifyLoginWithCorrectUsernameAndPassword() {
 
         String password = properties.getProperty("password");
         String username = properties.getProperty("user");
@@ -23,11 +22,11 @@ class LoginTest extends BaseTest {
         String actualTitle = driver.getTitle();
         log.info("'Opened login page, Title: '{}'", actualTitle);
 
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login(username, password);
-        HomePage homePage = new HomePage(driver);
+        var actualLoginMessage = at(LoginPage.class)
+                .login(username, password)
+                .getLoginMessage();
 
-        var actualLoginMessage = homePage.getLoginMessage();
+
         log.info("After login message: '{}'", actualLoginMessage);
 
         Assertions.assertEquals(loginSuccessful, actualLoginMessage);
