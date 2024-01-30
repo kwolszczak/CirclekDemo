@@ -10,7 +10,7 @@ class LoginTest extends BaseTest{
 
 
     @Test
-    public void verifyLoginWithCorrectUsernamAndPassword() {
+    public void verifyLoginWithCorrectUsernameAndPassword() {
         var expectedTitle = "Login System";
 
         driver.get(" https://circlek-public.github.io/cki-service-recruitment-task/");
